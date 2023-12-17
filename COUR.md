@@ -95,6 +95,8 @@ let mixteArray: (string | number | (number | number[])[])[] = [
 "noImplicitReturns": true, /* Enable error reporting for codepaths that do not explicitly return in a function. */
 "noUnusedLocals": true, /* Enable error reporting when local variables aren't read. */
 "noUnusedParameters": true, /* Raise an error when a function parameter isn't read. */
+"allowUnreachableCode": false, /* Disable error reporting for unreachable code. */
+"preserveConstEnums": true, /* Disable erasing 'const enum' declarations in generated code. */
 
 // execution
 let isTruthy: boolean = true;
@@ -209,4 +211,215 @@ function exp(nOne: number, nTwo: number): expnums {
 }
 // will return only expnums
 console.log(exp(1, 1));
+```
+
+#### Tuple
+
+```ts
+/*
+-Tuple-
+ "is another type of Array Type"
+ "you have to be aware of the length, type and position of each item"
+*/
+
+let list: readonly [number, string, boolean] = [1, "Sisttara", true];
+
+// enable destructuring
+const [id, name, married] = list;
+
+// readonly used to forbid from the adding or deleting from the list
+```
+
+#### Void & Never
+
+```ts
+/*
+--Void
+---- Function That Will Return Nothing
+---- Function in JS That will Return A Value Will Show Indefined
+---- undefined is Not Void
+-- Never
+---- Return Type Never Returns
+---- The Function Doesn't Have A Normal Completion
+---- it Throws an Error or never Finishes Running at all "Infinite Loop"
+*/
+
+function foo(): void {
+	return;
+}
+
+function bar(): never {
+	throw new Error("Bar Error");
+}
+```
+
+#### Enums
+
+```ts
+// Enumerations
+// string or numbers or two of them
+// can refer to other enum
+enum Levels {
+	begginer = 7,
+	intermidiate = 8,
+	advanced,
+}
+
+enum systems {
+	cartesian = "cartesian",
+	polair = "polair",
+	spherique = "spherique",
+}
+
+console.log(Levels.advanced);
+```
+
+#### Types assertions
+
+```ts
+/*
+ Data Types
+ - Type Assertions
+ --- Sometime Compiler Doesnt Know The Information We Do
+ --- TypeScript Is Not Performing Any Check To Make Sure Type Assertion Is Valid
+*/
+
+// WHAT
+/*
+-- used to define the type of assertions
+primitive value, node element,...
+*/
+
+// HOW
+// Two Ways to define the type of assertion
+let myImg = document.getElementById("my-img") as HTMLImageElement;
+// OR
+let myImg = <HTMLImageElement>document.getElementById("my-img");
+///
+
+// WHY
+/*
+if the assertion doesn't have the property; will throw an error
+*/
+
+// EXAMPLE
+let myImg = document.getElementById("my-img") as HTMLImageElement;
+
+log(myImg.src); // pass
+log(myImg.value); // decline
+```
+
+#### type assertion types
+
+```ts
+/*
+ Data Types
+ - Union And Intersection Types
+ --- Union Type
+ ------ The | Symbol Is Used To Create The Union => "Or"
+
+ --- Intersection Type
+ ------ Is A Type That Combines Several Types Into One
+ ------ The & Symbol Is Used To Create An Intersection => "And"
+
+ --- If A Union Is An OR, Then An Intersection Is An AND.
+*/
+
+// WHAT / WHY
+
+/*
+- combine or assign more annotations in one annotation
+*/
+
+// HOW
+
+type firstType = {
+	// props goes here
+	name: string;
+};
+type secondType = {
+	age: number;
+};
+
+type intersectionType = firstType & secondType;
+type untionType = firstType | secondType;
+// EXAMPLE
+
+type personalInfo = {
+	name: string;
+	age: number;
+	isHired: boolean;
+};
+
+type additionalInfo = {
+	friends: User[];
+	skills: string[];
+	isMarried: boolean;
+};
+
+type uInfo = personalInfo & additionalInfo;
+
+const abSlam: uInfo = {
+	name: "abSlam",
+	age: 20,
+	isHired: false,
+	friends: [
+		{
+			name: "Sisttara",
+			age: 20,
+			isMarried: true,
+			skills: ["swimming", "football", "fighting"],
+		},
+		{
+			name: "Sisttara",
+			age: 20,
+			isMarried: true,
+			skills: ["swimming", "football", "fighting"],
+		},
+	],
+	skills: ["swimming", "eating", "football"],
+	isMarried: true,
+};
+```
+
+#### Interfaces
+
+```ts
+// WHAT / WHY
+
+/*
+- used to define the object or Classes
+- more flexible than types
+- can contain functions
+- reOpend // we can reOpen the interface and assign to it
+*/
+
+// HOW
+
+interface User {
+	// props goes here
+	readonly name: string; // readonly => identify that the name will not be changed
+	// using functions
+	sayHello(): string;
+	// or
+	sayHello: () => string;
+	// with params
+	getDoubler(num: number): number;
+}
+
+// EXAMPLE
+
+interface User {
+	name: string;
+	age?: number;
+	sayHello(): string;
+}
+
+const abSlam: User = {
+	name: "abSlam",
+	age: 30,
+	sayHello() {
+		return "Hello from abSlam";
+	},
+};
 ```

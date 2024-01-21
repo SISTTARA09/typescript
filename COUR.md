@@ -343,8 +343,8 @@ type secondType = {
 
 type intersectionType = firstType & secondType;
 type untionType = firstType | secondType;
-// EXAMPLE
 
+// EXAMPLE
 type personalInfo = {
 	name: string;
 	age: number;
@@ -422,4 +422,189 @@ const abSlam: User = {
 		return "Hello from abSlam";
 	},
 };
+```
+
+##### extend interface
+
+```ts
+// WHAT & WHY
+/*
+- used to acheive DRY Concept
+*/
+
+// HOW
+
+interface newInterface extends oldInterface {
+	// props goes here
+}
+
+// EXAMPLE
+interface User {
+	id?: number;
+	name: string;
+	age: number;
+}
+
+interface Admin extends User {
+	isAdmin: boolean;
+}
+```
+
+#### classes
+
+```ts
+/*
+  Class
+  - Data Access Modifiers & Parameters Properties
+  --- Public
+  ------ All Members Of A Class In TypeScript Are Public
+  ------ All Public Members Can Be Accessed Anywhere Without Any Restrictions
+  --- Private
+  ------ Members Are Visible Only To That Class And Are Not Accessible Outside The Class
+  --- Protected
+  ------ Same Like Private But Can Be Accessed Using The Deriving Class
+
+  - TypeScript Is A Layer On Top Of JavaScript
+  - It Should Remove All Annotations And Although Access Modifiers "Private For Example"
+*/
+
+class User {
+	constructor(
+		private userName: string,
+		protected email: string,
+		public readonly number: number
+	) {}
+	sayHello() {
+		return `Hello ${this.userName}`;
+	}
+}
+
+const userOne = new User("Sisttara", "sisttara@gmail.com", 99);
+console.log(userOne.number);
+```
+
+#### get & set properties
+
+```ts
+// WHAT & WHY
+
+/*
+- are used to show or update the value of the property
+*/
+
+// HOW
+
+class ClassName {
+	constructor(private _propOne: string) {}
+	get propOne() {
+		return this._propOne;
+	}
+	set propOne(val: string) {
+		this._propOne = val;
+	}
+}
+
+// set
+classN.propOne = "NewPropOne";
+// get
+log(classN.propOne);
+
+// EXAMPLE
+class User {
+	constructor(
+		private _userName: string,
+		protected email: string,
+		public readonly number: number
+	) {}
+	sayHello() {
+		return `Hello ${this.userName}`;
+	}
+	get userName() {
+		return this.userName;
+	}
+	set userName(val: string) {
+		this.userName = val;
+	}
+}
+const userOne = new User("Sisttara", "sisttara@gmail.com", 99);
+console.log(userOne.userName);
+userTwo.userName = "new Name";
+console.log(userOne.userName);
+```
+
+#### Class implements iterface
+
+```ts
+// WHAT & WHy
+
+/*
+- used to inherit types from the iterface
+*/
+
+// HOW
+
+class ClassName implements InterfaceName {
+	constructor(...interface) {}
+}
+
+// EXAMPLE
+
+interface PersonalInfo {
+	name: string;
+	phoneNumber: number | string;
+}
+class User implements PersonalInfo {
+	constructor(
+		public name: string,
+		public readonly phoneNumber: number | string,
+	) {
+	}
+	sayHey(): void {
+		console.log("Hey");
+	}
+}
+
+const userOne = new User("Sisttara", +212631220109);
+```
+
+#### Abstarct class
+
+```ts
+// WHAT &  WHY
+
+/*
+- is the Parent class that provides the methods and properties.
+- used to organize the classes
+*/
+
+// HOW
+
+// By inserting the "abstract" keyword before the class
+
+abstract class ClassName {
+  constructor(public name: string) { }
+  abstract methodName(): void;
+}
+
+// EXAMPLE
+
+abstract class User {
+  constructor(public name: string) { }
+  abstract sayHi(): void;
+}
+
+class childUser extends User {
+  constructor(public name: string) { 
+    super(name)
+  }
+  sayHi(): void {
+    console.log("Hi!");
+  }
+}
+
+// NOTES
+
+/*
+- we can also abstract methods inside it.
+*/
 ```

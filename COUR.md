@@ -57,7 +57,7 @@ if we don't annotate the type, the compiler will detect it.
 ### Type annotation & Arrays
 
 ```ts
-// that's allo us to go back to the dinamic declaration
+// that's allow us to go back to the dynamic declaration
 let all: string | number | boolean = 0;
 
 all = "hello";
